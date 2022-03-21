@@ -3,12 +3,14 @@
     $alert = "";
     if(array_key_exists('submit', $_GET)){
         if(!$_GET['city']){
+          //Creating alert if the input field is empty
           $alert = "<div class='alert alert-danger' role='alert' style='margin-left:200px; margin-right: 100px;margin-top:30px;margin-bottom:30px;'>Please enter a city!</div>";
         }
         if($_GET['city']){
             $city = $_GET['city'];
             @$apiData = file_get_contents("http://api.openweathermap.org/data/2.5/weather?q=".$city."&appid=e94dda25089c2c3280084873f2ec6d3c&units=metric");
             if(!$apiData){
+                //Creating alert if the city is invalid
                 $alert = "<div class='alert alert-danger' role='alert' style='margin-left:200px; margin-right: 100px;margin-top:30px;margin-bottom:30px;'>Please enter a valid city!</div>";
             }else{
             $weather= json_decode($apiData, true);
